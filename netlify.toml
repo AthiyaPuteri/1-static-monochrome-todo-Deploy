@@ -1,0 +1,27 @@
+# ==============================================================================
+# Netlify Configuration - Task Ledger (Monochromatic Static Edition)
+# BNI ODP IT 2026
+# ==============================================================================
+
+[build]
+  # Tipe 1 tidak memerlukan perintah kompilasi
+  publish = "."
+
+# Security and Caching Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/styles/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, no-transform"
+
+[[headers]]
+  for = "/scripts/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, no-transform"

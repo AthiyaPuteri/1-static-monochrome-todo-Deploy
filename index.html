@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Ledger &bull; Monochromatic Static Edition</title>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-badge-row">
+        <span class="badge-tag">Type 1 &bull; Static Site</span>
+        <span class="badge-meta">Zero Build Step &bull; Pure HTML/CSS/JS</span>
+      </div>
+      <h1 class="app-title">Task Ledger</h1>
+      <p class="app-subtitle">
+        Aplikasi pencatatan tugas harian monokromatik berbasis <code>localStorage</code>.
+        Didesain untuk demonstrasi deployment statis murni tanpa proses build kompilasi.
+      </p>
+    </header>
+
+    <!-- Main Card -->
+    <main class="card-container">
+      <!-- Input Form -->
+      <form id="todoForm" class="todo-form" autocomplete="off">
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="todoInput" 
+            class="todo-input" 
+            placeholder="Tuliskan tugas baru, lalu tekan Enter..."
+            aria-label="Tugas baru"
+            required
+            maxlength="120"
+          >
+          <button type="submit" class="btn btn-primary" id="btnAddTodo">
+            <span>+ Tambah</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Filter Controls -->
+      <div class="filter-bar" role="tablist" aria-label="Filter status tugas">
+        <div class="filter-tabs">
+          <button type="button" class="tab-item active" data-filter="all" role="tab" aria-selected="true">
+            Semua <span class="tab-count" id="countAll">0</span>
+          </button>
+          <button type="button" class="tab-item" data-filter="active" role="tab" aria-selected="false">
+            Aktif <span class="tab-count" id="countActive">0</span>
+          </button>
+          <button type="button" class="tab-item" data-filter="completed" role="tab" aria-selected="false">
+            Selesai <span class="tab-count" id="countCompleted">0</span>
+          </button>
+        </div>
+
+        <button type="button" class="btn-text-danger" id="btnClearCompleted" disabled>
+          Hapus Selesai
+        </button>
+      </div>
+
+      <!-- Todo List -->
+      <ul id="todoList" class="todo-list" aria-label="Daftar tugas">
+        <!-- Rendered dynamically by app.js -->
+      </ul>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <div class="empty-icon">&empty;</div>
+        <div class="empty-title">Belum ada tugas pada kategori ini</div>
+        <p class="empty-desc">Tambahkan tugas baru melalui form di atas untuk memulai pencatatan.</p>
+      </div>
+
+      <!-- Footer Statistics -->
+      <footer class="card-footer">
+        <div class="stats-left">
+          <span id="itemsLeftCount">0</span> tugas tersisa
+        </div>
+        <div class="stats-right">
+          <span class="storage-indicator" title="Data tersimpan di browser">
+            <span class="dot-online"></span> LocalStorage Aktif
+          </span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Deployment Info Footer -->
+    <aside class="deployment-info-card">
+      <div class="info-header">
+        <strong>Karakteristik Deployment Tipe 1 (Statis Murni):</strong>
+      </div>
+      <ul class="info-list">
+        <li><strong>Struktur Aset:</strong> Langsung menyajikan <code>index.html</code>, <code>styles/main.css</code>, dan <code>scripts/app.js</code> tanpa bundler (No Node.js runtime).</li>
+        <li><strong>Jalur Relatif:</strong> Menggunakan prefix <code>./</code> sehingga bebas error 404 pada subpath domain (seperti GitHub Pages atau root Nginx).</li>
+        <li><strong>Kesesuaian Hosting:</strong> Nginx static block, Netlify drop/folder, GitHub Pages, Amazon S3 / CloudFront.</li>
+      </ul>
+    </aside>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 BNI Officer Development Program (ODP IT) &bull; Deployment Demonstration Module.</p>
+    </footer>
+  </div>
+
+  <script src="./scripts/app.js"></script>
+</body>
+</html>
